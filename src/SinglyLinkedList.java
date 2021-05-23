@@ -253,7 +253,7 @@ public class SinglyLinkedList {
         slowPtr.next=null;
     }
 
-    
+
 
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
