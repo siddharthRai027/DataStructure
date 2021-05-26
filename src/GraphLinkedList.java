@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Queue;
 
 public class GraphLinkedList {
     private  LinkedList<Integer>[] adj;
@@ -17,6 +18,25 @@ public class GraphLinkedList {
         adj[v].add(u);
         E++;
     }
+    public void bfs(int s){
+        boolean[] visited =new boolean[V];
+        Queue<Integer> q= new LinkedList<>();
+        visited[s]=true;
+        q.offer(s);
+        while (!q.isEmpty()){
+            int u = q.poll();
+            System.out.print(u + " ");
+            for(int v:adj[u]){
+                if(!visited[v]){
+                    visited[v]=true;
+                    q.offer(v);
+                }
+            }
+
+        }
+
+
+    }
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(V + " vertices " + E + " edges" +"\n");
@@ -30,12 +50,13 @@ public class GraphLinkedList {
         return sb.toString();
     }
     public static void main(String[] args) {
-        GraphLinkedList gl =new GraphLinkedList(4);
+        GraphLinkedList gl =new GraphLinkedList(5);
         gl.addEdge(0,1);
         gl.addEdge(1,2);
         gl.addEdge(2,3);
         gl.addEdge(3,0);
-        System.out.println(gl);
+        gl.addEdge(2,4);
+      gl.bfs(0);
 
 
     }
