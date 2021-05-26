@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class GraphLinkedList {
     private  LinkedList<Integer>[] adj;
@@ -32,10 +33,34 @@ public class GraphLinkedList {
                     q.offer(v);
                 }
             }
-
         }
+    }
+
+    public void dfs(int s){
+        System.out.println();
+        boolean [] visited = new boolean[V];
+        Stack<Integer> stack = new Stack<>();
+        stack.push(s);
+        while (!stack.isEmpty()){
+            int u = stack.pop();
+            if(!visited[u]){
+                visited[u]=true;
+                System.out.print(u +" ");
+                for (int v: adj[u]){
+                    if(!visited[v]){
+                        stack.push(v);
+                    }
+                }
+            }
 
 
+            for(int v:adj[u]){
+                if(!visited[v]){
+
+                    stack.push(v);
+                }
+            }
+        }
     }
     public String toString(){
         StringBuilder sb = new StringBuilder();
@@ -57,6 +82,7 @@ public class GraphLinkedList {
         gl.addEdge(3,0);
         gl.addEdge(2,4);
       gl.bfs(0);
+      gl.dfs(0);
 
 
     }
